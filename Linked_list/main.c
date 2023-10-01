@@ -35,6 +35,26 @@ int MaxElement(struct Node *first){
     return max;
 }
 
+struct Node* Insert(struct Node **first,int item,int index){
+    struct Node *p=*first;
+    struct Node *temp = (struct Node*)malloc(sizeof(struct Node));
+    temp->data = item;
+    temp->next = NULL;
+    if(index==0){
+        temp->next=*first;
+        *first = temp;
+        p=temp;
+    }
+    else{
+        for(int i=0;i<index-1;i++){
+        p=p->next;
+    }
+    temp->next=p->next;
+    p->next = temp;
+    }
+    return p;
+}
+
 int main(){
     int n, element;
     int A[100];
@@ -61,7 +81,13 @@ int main(){
     // Recursive_Reverse(first);
     
     // To find the largest element
-    printf("The largest element in the list is %d ",MaxElement(first));
-    
+    // printf("The largest element in the list is %d ",MaxElement(first));
+
+    // To insert a node at any given index
+    int item,index;
+    printf("Enter the data and the index to be inserted: ");
+    scanf("%d %d",&item,&index);
+    Insert(&first,item,index);
+    Display(first);
     return 0;
 }
