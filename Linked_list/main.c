@@ -22,6 +22,19 @@ void Recursive_Reverse(struct Node *first){
         printf("%d -> ",p->data);
     }
 }
+
+int MaxElement(struct Node *first){
+    struct Node *p=first;
+    int max=first->data;
+    while(p){
+        if(p->data>max){
+            max = p->data;
+        }
+        p=p->next;
+    }
+    return max;
+}
+
 int main(){
     int n, element;
     int A[100];
@@ -44,8 +57,11 @@ int main(){
     // printf("The %d element from the end is %d ",index,FromEnd(first,index));
 
     // For Reversing a linked list using recursion
-    printf("Recursive Reverse Display:\n ");
-    Recursive_Reverse(first);
+    // printf("Recursive Reverse Display:\n ");
+    // Recursive_Reverse(first);
+    
+    // To find the largest element
+    printf("The largest element in the list is %d ",MaxElement(first));
     
     return 0;
 }
