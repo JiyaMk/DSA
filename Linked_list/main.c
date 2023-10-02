@@ -68,6 +68,24 @@ int Search(struct Node *first,int key){
     return -1;
 }
 
+struct Node* RemoveDuplicatesInSorted(struct Node** first){
+    struct Node *p,*q;
+    q=*first;
+    p=q->next;
+    while(p){
+        if(p->data==q->data){
+            p=p->next;
+        }
+        else{
+            q->next=p;
+            p=p->next;
+            q=q->next;
+        }
+    }
+    q->next=NULL;
+    return *first;
+}
+
 int main(){
     int n, element;
     int A[100];
@@ -104,10 +122,14 @@ int main(){
     // Display(first);
 
     //To search a given element
-    int key;
-    printf("Enter the element to search: ");
-    scanf("%d", &key);
-    printf("Element found at index: %d",Search(first, key));
+    // int key;
+    // printf("Enter the element to search: ");
+    // scanf("%d", &key);
+    // printf("Element found at index: %d",Search(first, key));
+
+    //To remove Duplicates in a Sorted Linked list
+    RemoveDuplicatesInSorted(&first);
+    Display(first);
 
 
     return 0;
