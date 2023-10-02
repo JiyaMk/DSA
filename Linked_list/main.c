@@ -86,6 +86,27 @@ struct Node* RemoveDuplicatesInSorted(struct Node** first){
     return *first;
 }
 
+int SecondLargest(struct Node* first){
+    struct Node *p=first;
+    if(first == NULL || first->next == NULL){
+        printf("List doesn't have enough elements.\n");
+        return -1;
+    }
+    int largest = first->data;
+    int slargest = first->next->data;
+    while(p){
+        if(p->data>largest){
+            slargest=largest;
+            largest=p->data;
+        }
+        else if(p->data>slargest && p->data<largest){
+            slargest=p->data;
+        }
+        p=p->next;
+    }
+    return slargest;
+}
+
 int main(){
     int n, element;
     int A[100];
@@ -128,9 +149,11 @@ int main(){
     // printf("Element found at index: %d",Search(first, key));
 
     //To remove Duplicates in a Sorted Linked list
-    RemoveDuplicatesInSorted(&first);
-    Display(first);
+    // RemoveDuplicatesInSorted(&first);
+    // Display(first);
 
+    //To find the second largest element
+    printf("The second largest element is: %d",SecondLargest(first));
 
     return 0;
 }
