@@ -55,6 +55,19 @@ struct Node* Insert(struct Node **first,int item,int index){
     return p;
 }
 
+int Search(struct Node *first,int key){
+    struct Node*p = first;
+    int index=0;
+    while(p){
+        if(p->data == key){
+            return index;
+        }
+        p=p->next;
+        index++;
+    }
+    return -1;
+}
+
 int main(){
     int n, element;
     int A[100];
@@ -84,10 +97,18 @@ int main(){
     // printf("The largest element in the list is %d ",MaxElement(first));
 
     // To insert a node at any given index
-    int item,index;
-    printf("Enter the data and the index to be inserted: ");
-    scanf("%d %d",&item,&index);
-    Insert(&first,item,index);
-    Display(first);
+    // int item,index;
+    // printf("Enter the data and the index to be inserted: ");
+    // scanf("%d %d",&item,&index);
+    // Insert(&first,item,index);
+    // Display(first);
+
+    //To search a given element
+    int key;
+    printf("Enter the element to search: ");
+    scanf("%d", &key);
+    printf("Element found at index: %d",Search(first, key));
+
+
     return 0;
 }
